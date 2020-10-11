@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
+import CounterDisplay from './CounterDisplay';
+import CounterControls from './CounterControls';
 
 class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: 0,
-    };
-  }
-
-  incerement = () => {
-    this.setState({
-      value: this.state.value + 1,
-    });
-  };
-
   render() {
-    return <div onClick={this.incerement}>{this.state.value}</div>;
+    const { value, incerement, decrement } = this.props;
+    return (
+      <div>
+        <CounterDisplay value={value} />
+        <CounterControls {...this.props} />
+      </div>
+    );
   }
 }
 

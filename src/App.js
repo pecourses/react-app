@@ -4,12 +4,26 @@ import Greeting from './components/Greeting';
 import './App.css';
 
 class App extends Component {
-  computeVisibility = () => {
-    return true;
+  constructor(props) {
+    super(props);
+    this.state = {
+      isShow: true,
+    };
+  }
+
+  clickHandler = () => {
+    this.setState({
+      isShow: !this.state.isShow,
+    });
   };
 
   render() {
-    return <CounterDashboard />;
+    return (
+      <div>
+        {this.state.isShow && <CounterDashboard />}
+        <button onClick={this.clickHandler}>UNMOUNT COUNTER</button>
+      </div>
+    );
   }
 }
 

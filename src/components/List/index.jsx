@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import ListItem from './ListItem';
 
-const db =[
-    {
-        id:1,
-        name: 'iphone',
-        price:10000
-    },{}
-]
+const db = [
+  {
+    id: 1,
+    name: 'iphone',
+    price: 10000,
+  },
+  {
+    id: 2,
+    name: 'Nokia',
+    price: 1450,
+  },
+];
 
 class List extends Component {
   constructor(props) {

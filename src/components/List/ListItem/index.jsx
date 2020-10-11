@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Icon from '@mdi/react'
+import { mdiAccount, mdiFullscreenExit } from '@mdi/js'
+import styles from './ListItem.module.css';
 
 class ListItem extends Component {
   constructor(props) {
@@ -21,12 +24,13 @@ class ListItem extends Component {
   render() {
     const { name } = this.props;
     const { isSelected } = this.state;
-    const styles = {
+    const inlineStyles = {
       backgroundColor: isSelected ? 'red' : 'white',
     };
     return (
-      <li style={styles}>
+      <li style={inlineStyles} className={styles.wrapper}>
         {name}
+        <Icon path={mdiAccount} size={2} />
         <button onClick={this.handleSelect}>select</button>
         <button onClick={this.handleDelete}>delete</button>
       </li>

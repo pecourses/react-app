@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import Counter from './components/Counter';
+import CounterDashboard from './components/CounterDashboard';
 import Greeting from './components/Greeting';
 import './App.css';
 
 class App extends Component {
+  computeVisibility = () => {
+    return true;
+  };
+
   render() {
-    return (
-      <>
-        <Greeting name='Vasya' />
-        <Counter title='Counter title' />
-      </>
-    );
+    return <CounterDashboard />;
   }
 }
 

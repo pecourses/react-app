@@ -5,22 +5,48 @@ class CounterDashboard extends Component {
     super(props);
     this.state = {
       value: 0,
+      isGoing: true,
     };
   }
 
   componentDidMount() {
-    this.intervalId = setInterval(() => {
+    this.startTimer();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.clearTimer();
+    if (this.state.isGoing) {
+      this.startTimer();
+    }
+  }
+
+  componentWillUnmount() {
+    this.clearTimer();
+  }
+
+  reset = () => {
+    this.setState({
+      value: 0,
+    });
+  };
+
+  clearTimer = () => {
+    clearInterval(this.timeoutId);
+  };
+
+  stopTimer = () => {
+    this.setState({
+      isGoing: !this.state.isGoing,
+    });
+  };
+
+  startTimer = () => {
+    this.timeoutId = setTimeout(() => {
       this.setState({
         value: this.state.value + 1,
       });
     }, 1000);
-  }
-
-  componentDidUpdate(prevProps, prevState) {}
-
-  componentWillUnmount() {
-    clearInterval(this.intervalId);
-  }
+  };
 
   incerement = () => {
     this.setState({
@@ -43,6 +69,8 @@ class CounterDashboard extends Component {
           incerement={this.incerement}
           value={value}
         />
+        <button onClick={this.stopTimer}>Switch stop/going</button>
+        <button onClick={this.reset}>Reset</button>
       </div>
     );
   }

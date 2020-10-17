@@ -1,0 +1,15 @@
+.userCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  max-width: 450px;
+  min-height: 500px;
+  background-color: blanchedalmond;
+  border-radius: 15px;
+}
+
+.selectedUserCard {
+  background-color: cadetblue;
+}

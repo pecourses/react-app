@@ -88,7 +88,7 @@ class UserList extends Component {
             {error && <Error error={error} />}
             {isFetching ? <Spinner /> : this.renderUsers()}
           </section>
-          <section>
+          <section className={styles.userList}>
             <h1>Selected Users List</h1>
             <SelectedUserList
               handleSelect={this.handleSelect}

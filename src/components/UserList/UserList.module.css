@@ -1,3 +1,7 @@
+.userList{
+  width: 50vw;
+}
+
 .userList > article {
   margin: 10px;
 }

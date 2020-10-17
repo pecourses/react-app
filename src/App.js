@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import List from './components/List';
+import UserList from './components/UserList';
 
 class App extends Component {
   render() {
-    return <List />;
+    return <UserList />;
   }
 }
 

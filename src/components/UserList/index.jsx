@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import UserCard from './UserCard';
 import styles from './UserList.module.css';
 import { loadUsers } from '../../api';
@@ -38,10 +39,22 @@ class UserList extends Component {
     }
   };
 
-  handleSelect = (id) => {
-    const { users } = this.state;
+  handleSelect = (uuid) => {
+    const { users, selectedUsers } = this.state;
 
-    // this.setState({     });
+    const selectedUser = users.find(
+      (currentUser) => currentUser.login.uuid === uuid
+    );
+
+    const result = selectedUsers.includes(selectedUser);
+    console.log(result);
+    if (result) {
+      const newSelectedUsers = [...selectedUsers, selectedUser];
+
+      this.setState({
+        selectedUsers: newSelectedUsers,
+      });
+    }
   };
 
   renderUsers = () => {
@@ -49,9 +62,10 @@ class UserList extends Component {
     return users.map((user) => (
       <UserCard
         key={user.login.uuid}
-        isSelected={selectedUsers.includes(
-          (currentUser) => currentUser.id === user.id
-        )}
+        isSelected={selectedUsers
+          .includes
+          //   (currentUser) => currentUser.id === user.id
+          ()}
         handleSelect={this.handleSelect}
         {...user}
       />
@@ -76,7 +90,10 @@ class UserList extends Component {
           </section>
           <section>
             <h1>Selected Users List</h1>
-            <SelectedUserList handleSelect={this.handleSelect} users={selectedUsers} />
+            <SelectedUserList
+              handleSelect={this.handleSelect}
+              users={selectedUsers}
+            />
           </section>
         </div>
       </div>

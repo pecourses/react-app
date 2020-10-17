@@ -4,8 +4,9 @@ import styles from './UserCard.module.css';
 
 function UserCard(props) {
   const handleClick = () => {
-    const { handleSelect, id } = props;
-    handleSelect(id);
+    const { handleSelect, login:{uuid} } = props;
+    console.log(uuid)
+    handleSelect(uuid);
   };
 
   const {

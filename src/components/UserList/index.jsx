@@ -4,6 +4,7 @@ import UserCard from './UserCard';
 import styles from './UserList.module.css';
 import { loadUsers } from '../../api';
 import SelectedUserList from './SelectedUserList';
+import { toggleItemInArray } from '../../utils';
 
 class UserList extends Component {
   constructor(props) {
@@ -39,45 +40,34 @@ class UserList extends Component {
     }
   };
 
-  handleSelect = (uuid) => {
-    const { users, selectedUsers } = this.state;
-
-    const selectedUser = users.find(
-      (currentUser) => currentUser.login.uuid === uuid
-    );
-
-    const result = selectedUsers.includes(selectedUser);
-    console.log(result);
-    if (result) {
-      const newSelectedUsers = [...selectedUsers, selectedUser];
-
-      this.setState({
-        selectedUsers: newSelectedUsers,
-      });
-    }
+  handleSelect = newUser => {
+    const { selectedUsers } = this.state;
+    const foundUser = _.find(selectedUsers, newUser);
+    this.setState({
+      selectedUsers: toggleItemInArray(selectedUsers, foundUser || newUser),
+    });
   };
 
   renderUsers = () => {
     const { users, selectedUsers } = this.state;
-    return users.map((user) => (
+    return users.map(user => (
       <UserCard
         key={user.login.uuid}
-        isSelected={selectedUsers
-          .includes
-          //   (currentUser) => currentUser.id === user.id
-          ()}
+        isSelected={selectedUsers.find(
+          currentUser => currentUser.login.uuid === user.login.uuid
+        )}
         handleSelect={this.handleSelect}
-        {...user}
+        user={user}
       />
     ));
   };
 
   render() {
-    const { isFetching, error, users, selectedUsers } = this.state;
+    const { isFetching, error, selectedUsers } = this.state;
 
     return (
       <div>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((btnNum) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(btnNum => (
           <button key={btnNum} onClick={() => this.fetchUsers(btnNum)}>
             {btnNum}
           </button>

@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import styles from './UserCard.module.css';
 
 function UserCard(props) {
   const handleClick = () => {
-    const { handleSelect, login:{uuid} } = props;
-    console.log(uuid)
-    handleSelect(uuid);
+    const { handleSelect, user } = props;
+    handleSelect(user);
   };
 
   const {
-    name,
-    email,
     isSelected,
-    picture: { medium: imgSrc },
+    user: {
+      name,
+      email,
+      picture: { medium: imgSrc },
+    },
   } = props;
 
-  const cardStyles = classNames(
-      styles.userCard,
-    {
+  const cardStyles = classNames(styles.userCard, {
     [styles.selectedUserCard]: isSelected,
   });
 
   return (
-    <article onClick={handleClick} 
-    className={cardStyles}>
+    <article onClick={handleClick} className={cardStyles}>
       <h1>
         <span>{name.title}</span>
         {name.first} {name.last}

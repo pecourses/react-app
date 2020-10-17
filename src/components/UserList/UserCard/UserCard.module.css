@@ -4,10 +4,10 @@
   justify-content: center;
   align-items: center;
   min-width: 300px;
-  max-width: 450px;
-  min-height: 500px;
+  max-width: 350px;
   background-color: blanchedalmond;
   border-radius: 15px;
+  /* margin: 10px; */
 }
 
 .selectedUserCard {

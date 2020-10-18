@@ -9,6 +9,7 @@ function UserCard(props) {
   };
 
   const {
+    classes:{container},
     isSelected,
     user: {
       name,
@@ -17,7 +18,7 @@ function UserCard(props) {
     },
   } = props;
 
-  const cardStyles = classNames(styles.userCard, {
+  const cardStyles = classNames(styles.userCard, container, {
     [styles.selectedUserCard]: isSelected,
   });
 

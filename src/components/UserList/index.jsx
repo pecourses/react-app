@@ -42,7 +42,9 @@ class UserList extends Component {
 
   handleSelect = newUser => {
     const { selectedUsers } = this.state;
+
     const foundUser = _.find(selectedUsers, newUser);
+
     this.setState({
       selectedUsers: toggleItemInArray(selectedUsers, foundUser || newUser),
     });
@@ -50,8 +52,14 @@ class UserList extends Component {
 
   renderUsers = () => {
     const { users, selectedUsers } = this.state;
+
+    const userListStyles = {
+      container: styles.userCardMargin
+    }
+
     return users.map(user => (
       <UserCard
+        classes={userListStyles}
         key={user.login.uuid}
         isSelected={selectedUsers.find(
           currentUser => currentUser.login.uuid === user.login.uuid
@@ -64,6 +72,8 @@ class UserList extends Component {
 
   render() {
     const { isFetching, error, selectedUsers } = this.state;
+
+    
 
     return (
       <div>

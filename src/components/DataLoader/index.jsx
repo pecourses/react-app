@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class DataLoader extends Component {
   state = {
@@ -35,7 +36,7 @@ class DataLoader extends Component {
   render() {
     const { data, isFetching, error } = this.state;
 
-    const { children, render } = this.props;
+    const { children } = this.props;
 
     if (error) {
       return <div>ERROR</div>;
@@ -43,9 +44,13 @@ class DataLoader extends Component {
     if (isFetching) {
       return <div>LOADING....</div>;
     }
-
-    return render(data);
+    return children(data);
   }
 }
+
+DataLoader.propTypes = {
+  getData: PropTypes.func.isRequired,
+  children: PropTypes.func.isRequired,
+};
 
 export default DataLoader;

@@ -9,20 +9,9 @@ class App extends Component {
   render() {
     return (
       <>
-        {/* <DataLoader getData={loadPosts} render={} /> */}
-        {/* <DataLoader getData={loadUsers}>
-          {(users) => {
-            return <div>{JSON.stringify(users)}</div>;
-          }}
-        </DataLoader> */}
-
-        
-        <UserList/>
-        </>
+        <TestComponent />
+      </>
     );
-    // const test = React.createElement(TestComponent, {}, 'etestet', 'testse');
-    // console.log(test);
-    // return test
   }
 }
 

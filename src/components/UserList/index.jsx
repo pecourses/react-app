@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import UserCard from './UserCard';
+import FormSubmitter from '../FormSubmitter';
+import withData from '../HOCs/withData';
 import styles from './UserList.module.css';
 import { loadUsers } from '../../api';
 import SelectedUserList from './SelectedUserList';
@@ -21,7 +23,7 @@ class UserList extends Component {
   async componentDidMount() {
     this.fetchUsers();
 
-   /*  
+    /*  
    
    TODO: find event on unload
 
@@ -41,7 +43,6 @@ class UserList extends Component {
     });
   }
 
-  
   fetchUsers = async (page = 1) => {
     this.setState({
       isFetching: true,
@@ -100,22 +101,44 @@ class UserList extends Component {
     ));
   };
 
+  renderSaveSelectedUsersButton = () => {
+    return (
+      <FormSubmitter>
+        {(onSubmit) => (
+          <button onClick={() => onSubmit(this.state.selectedUsers)}>
+            Save Selected users
+          </button>
+        )}
+      </FormSubmitter>
+    );
+  };
+
   renderSaveUsersButton = () => {
-    const clickHandler = () => {
-      localStorage.setItem(
-        CONSTANTS.SELECTED_USERS_KEY,
-        JSON.stringify(this.state.selectedUsers)
-      );
-    };
-    return <button onClick={clickHandler}>Save users</button>;
+    return (
+      <FormSubmitter>
+        {(onSubmit) => (
+          <button
+            onClick={(event) => {
+              console.log(event);
+              onSubmit(this.state.users);
+            }}
+          >
+            Save users
+          </button>
+        )}
+      </FormSubmitter>
+    );
   };
 
   render() {
     const { isFetching, error, selectedUsers } = this.state;
 
+    console.log(this.props.data)
+
     return (
       <div>
         {this.renderPaginaton()}
+        {this.renderSaveSelectedUsersButton()}
         {this.renderSaveUsersButton()}
         <div className={styles.listContainer}>
           <section className={styles.userList}>
@@ -144,4 +167,6 @@ function Spinner(props) {
   return <div>LOADING...</div>;
 }
 
-export default UserList;
+const result = withData(UserList);
+
+export default result;

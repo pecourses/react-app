@@ -1,23 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './UserCard.module.css';
 
 function UserCard(props) {
   const handleClick = () => {
-    const { handleSelect, id } = props;
-    handleSelect(id);
+    const { handleSelect, user } = props;
+    handleSelect(user);
   };
 
   const {
-    name,
-    email,
+    // classes:{container},
     isSelected,
-    picture: { medium: imgSrc },
+    user: {
+      name,
+      email,
+      picture: { medium: imgSrc },
+    },
   } = props;
 
-  const cardStyles = classNames(styles.userCard, {
-    [styles.selectedUserCard]: isSelected,
-  });
+  const cardStyles = classNames(
+    styles.userCard,
+    /* container */ {
+      [styles.selectedUserCard]: isSelected,
+    }
+  );
 
   return (
     <article onClick={handleClick} className={cardStyles}>
@@ -30,5 +37,24 @@ function UserCard(props) {
     </article>
   );
 }
+
+const userCardNameProp = PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  first: PropTypes.string.isRequired,
+  last: PropTypes.string.isRequired,
+}).isRequired;
+
+const userCardPictureProp = PropTypes.shape({
+  medium: PropTypes.string.isRequired,
+}).isRequired;
+
+UserCard.propTypes = {
+  user: PropTypes.shape({
+    name: userCardNameProp,
+    email: PropTypes.string.isRequired,
+    picture: userCardPictureProp,
+  }),
+  isSelected: PropTypes.bool,
+};
 
 export default UserCard;

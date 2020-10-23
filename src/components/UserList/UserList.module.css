@@ -1,0 +1,13 @@
+.userList{
+  width: 50vw;
+}
+
+.userCardMargin {
+  margin: 10px;
+}
+
+.listContainer {
+  display: flex;
+  max-width: 100%;
+  width: 100%;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import CONSTANTS from '../../CONSTANTS';
-import *as api from '../../api';
+import CONSTANTS from '../../../CONSTANTS';
+import *as api from '../../../api';
 
 class FormSubmitter extends Component {
   onSubmit = (values) => {

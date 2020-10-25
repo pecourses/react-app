@@ -24,3 +24,4 @@ export const loadPosts = async () => {
     throw e;
   }
 };
+

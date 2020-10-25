@@ -4,7 +4,7 @@ import UserCard from './UserCard';
 import FormSubmitter from '../FormSubmitter';
 import withData from '../HOCs/withData';
 import styles from './UserList.module.css';
-import { loadUsers } from '../../api';
+import { loadUsers, showSavedUsers } from '../../api';
 import SelectedUserList from './SelectedUserList';
 import { toggleItemInArray } from '../../utils';
 import CONSTANTS from '../../CONSTANTS';
@@ -64,7 +64,6 @@ class UserList extends Component {
 
   handleSelect = (newUser) => {
     const { selectedUsers } = this.state;
-
     const foundUser = _.find(selectedUsers, newUser);
 
     this.setState({
@@ -74,7 +73,6 @@ class UserList extends Component {
 
   renderUsers = () => {
     const { users, selectedUsers } = this.state;
-
     const userListStyles = {
       container: styles.userCardMargin,
     };
@@ -133,7 +131,7 @@ class UserList extends Component {
   render() {
     const { isFetching, error, selectedUsers } = this.state;
 
-    console.log(this.props.data)
+    console.log(this.props.data);
 
     return (
       <div>
@@ -167,6 +165,6 @@ function Spinner(props) {
   return <div>LOADING...</div>;
 }
 
-const result = withData(UserList);
+// const result = withData(UserList);
 
-export default result;
+export default UserList;

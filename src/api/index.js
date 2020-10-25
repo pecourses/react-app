@@ -1,5 +1,6 @@
 import * as config from './config';
 import CONSTANTS from '../CONSTANTS';
+import history from '../utils/history';
 
 export const loadUsers = async (
   amount = CONSTANTS.RESULTS_PER_PAGE,
@@ -22,5 +23,15 @@ export const loadPosts = async () => {
     return response.json();
   } catch (e) {
     throw e;
+  }
+};
+
+export const loadImages = async () => {
+  try {
+    // fetch is ok....
+
+    throw new Error('not ok');
+  } catch (e) {
+    history.push('/error');
   }
 };

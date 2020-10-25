@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.submitBtn {
+  background-color: #2ea44f;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  color: white;
+}
+
+.fieldHeader{
+    margin-left: 10px;
+}
+
+.formLayout{
+    max-width: 500px;
+    min-width: 300px;
+    width: 100%;
+    border-radius: 5px;
+    align-self: center;
+}

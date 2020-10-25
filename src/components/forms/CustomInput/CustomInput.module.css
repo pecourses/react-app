@@ -1,0 +1,44 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  margin: 10px;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px 15px;
+  text-align: center;
+  border: 2px solid;
+}
+
+.valid {
+  border: 2px solid green;
+}
+
+.invalid {
+  border: 2px solid red;
+}
+
+.error {
+  position: absolute;
+  z-index: 2;
+  top: 100%;
+  background-color: crimson;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: white;
+}
+
+.error::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent crimson transparent;
+}

@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { signInScheme } from '../../../utils/validationScheams';
+import CustomInput from '../CustomInput';
+import styles from './SignInFormik.module.css';
+import cx from 'classnames';
 
 const SignInForm = (props) => {
   const initialValues = {
     login: '',
     email: '',
     password: '',
-    test: '',
   };
 
   const submitHandler = (values, formikBag) => {
@@ -17,47 +19,29 @@ const SignInForm = (props) => {
     formikBag.resetForm();
   };
 
+  const formClasses = cx(styles.container, styles.formLayout)
+
   return (
     <Formik
       onSubmit={submitHandler}
       initialValues={initialValues}
       validationSchema={signInScheme}
     >
-      {(formikProps) => {
-        console.log(formikProps);
-        return (
-          <Form>
-            <Field name='login' type='text' placeholder='enter your login' />
-            <ErrorMessage name='login' component='span' />
-
-            <Field name='email' type='text' placeholder='email' />
-            <ErrorMessage name='email' component='span' />
-
-            <Field name='password' type='password' placeholder='password' />
-            <ErrorMessage name='password' component='span' />
-
-            <Field>
-              {(fieldProps) => {
-                console.log(fieldProps);
-                return null;
-              }}
-            </Field>
-
-            <input type='submit' />
-          </Form>
-        );
-      }}
+      <Form className={formClasses}>
+        <p className={styles.fieldHeader}>Enter your login</p>
+        <CustomInput name='login' placeholder='enter your login' />
+        <p className={styles.fieldHeader}>Enter your email</p>
+        <CustomInput name='email' placeholder='email' />
+        <p className={styles.fieldHeader}>Enter your password</p>
+        <CustomInput name='password' type='password' placeholder='password' />
+        <button type='submit' className={styles.submitBtn}>Sign In</button>
+      </Form>
     </Formik>
   );
 };
 
 SignInForm.propTypes = {
-//   submitHandler: PropTypes.func.isRequired,
+  //submitHandler: PropTypes.func.isRequired,
 };
 
-/* export default withFormik({
-  onSubmit: submitHandler,
-  initialValues: initialValues,
-  validationSchema: signInScheme,
-})(SignInForm); */
-export default SignInForm
+export default SignInForm;

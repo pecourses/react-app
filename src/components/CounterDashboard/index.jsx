@@ -8,6 +8,7 @@ class CounterDashboard extends Component {
       value: 0,
       isGoing: true,
     };
+    this.timeoutId = undefined;
   }
 
   componentDidMount() {
@@ -42,11 +43,7 @@ class CounterDashboard extends Component {
   };
 
   startTimer = () => {
-    this.timeoutId = setTimeout(() => {
-      this.setState({
-        value: this.state.value + 1,
-      });
-    }, 1000);
+    this.timeoutId = setTimeout(this.incerement, 1000);
   };
 
   incerement = () => {

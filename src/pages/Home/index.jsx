@@ -11,7 +11,7 @@ function Home() {
       // onClick={() => setIsShown(!isShown)}
       >
       {isShown && <FuncMouse />}
-      {/* <Counter/> */}
+      <Counter/>
     </div>
   );
 }

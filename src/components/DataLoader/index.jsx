@@ -34,17 +34,8 @@ class DataLoader extends Component {
   };
 
   render() {
-    const { data, isFetching, error } = this.state;
-
     const { children } = this.props;
-
-    if (error) {
-      return <div>ERROR</div>;
-    }
-    if (isFetching) {
-      return <div>LOADING....</div>;
-    }
-    return children(data);
+    return children(this.state.data);
   }
 }
 

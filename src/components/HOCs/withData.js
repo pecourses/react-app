@@ -33,8 +33,7 @@ function withData(props) {
       };
 
       render() {
-        return <WrappedComponent 
-            data={this.state.data} />;
+        return <WrappedComponent data={this.state.data} />;
       }
     };
   };

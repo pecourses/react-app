@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Counter from './Counter';
+
 class CounterDashboard extends Component {
   constructor(props) {
     super(props);
@@ -71,6 +72,12 @@ class CounterDashboard extends Component {
         />
         <button onClick={this.stopTimer}>Switch stop/going</button>
         <button onClick={this.reset}>Reset</button>
+        {/* <button
+          onClick={() => {
+            ++this.state.value;
+          }}>
+          +
+        </button> */}
       </div>
     );
   }

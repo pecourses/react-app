@@ -9,11 +9,6 @@ import {
 import './reset.css';
 import './App.css';
 
-/*
-import SignInPage from './pages/SignInForm';
-import Home from './pages/Home';
-import About from './pages/About';
- */
 const SignInPage = React.lazy(() => import('./pages/SignInForm'));
 const Home = React.lazy(() => import('./pages/Home'));
 const About = React.lazy(() => import('./pages/About'));
@@ -22,8 +17,11 @@ const Contacts = React.lazy(() => import('./pages/Contacts'));
 class App extends Component {
   render() {
     return (
+      <div className='container'>
+
+        text
+
       <Router>
-        {/* ONLY ONE PER APP */}
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path='/' component={Home} />
@@ -36,10 +34,10 @@ class App extends Component {
             <Route path='*'>
               <div>Page not found</div>
             </Route>
-            {/* <Redirect from="*" to="/" /> */}
           </Switch>
         </Suspense>
       </Router>
+      </div>
     );
   }
 }

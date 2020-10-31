@@ -12,7 +12,7 @@ class SignInForm extends Component {
     errors: null,
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
 
     this.validateSubmit(this.state);
@@ -20,7 +20,7 @@ class SignInForm extends Component {
     console.log(this.state);
   };
 
-  validateSubmit = (values) => {
+  validateSubmit = values => {
     const errors = {};
 
     if (!values.email) {
@@ -32,10 +32,11 @@ class SignInForm extends Component {
     });
   };
 
-  handleChange = ({ target: { name, value } }) =>
-    void this.setState({
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({
       values: { ...this.state.values, [name]: value },
     });
+  };
 
   render() {
     const { email, password, login, errors } = this.state;
@@ -43,25 +44,25 @@ class SignInForm extends Component {
       <form className={styles.container} onSubmit={this.handleSubmit}>
         {errors && <div>{JSON.stringify(errors)}</div>}
         <input
-          type='text'
-          name='login'
+          type="text"
+          name="login"
           value={login}
           onChange={this.handleChange}
         />
         <input
           value={email}
           onChange={this.handleChange}
-          name='email'
-          type='text'
+          name="email"
+          type="text"
         />
         <input
           value={password}
           onChange={this.handleChange}
-          name='password'
-          type='password'
+          name="password"
+          type="password"
         />
         {/* <input type="checkbox"/> */}
-        <input type='submit' />
+        <input type="submit" />
       </form>
     );
   }

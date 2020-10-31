@@ -116,11 +116,11 @@ class UserList extends Component {
   renderSaveUsersButton = () => {
     return (
       <FormSubmitter>
-        {(onSubmit) => (
+        {(abrakadabra) => (
           <button
             onClick={(event) => {
               console.log(event);
-              onSubmit(this.state.users);
+              abrakadabra(this.state.users);
             }}
           >
             Save users

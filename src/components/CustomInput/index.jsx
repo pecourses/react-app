@@ -1,3 +1,8 @@
+import React from 'react';
+import { useField } from 'formik';
+import cx from 'classnames';
+import styles from './CustomInput.module.css';
+
 const CustomInput = props => {
   const { inputStyles, ...rest } = props;
   const [field, meta, helpers] = useField();
@@ -20,3 +25,5 @@ const CustomInput = props => {
     </label>
   );
 };
+
+export default CustomInput;

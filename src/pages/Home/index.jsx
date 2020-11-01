@@ -1,24 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Mouse from '../../components/Mouse';
 import Counter from '../../components/FuncCounter';
 import FuncMouse from '../../components/FuncMouse';
-import useHookMouse from '../../components/hooks/useMouse';
+import useMouse from '../../components/hooks/useMouse';
+import Test from '../../components/Test';
 
 function Home() {
-  const [isShown, setIsShown] = useState(true);
-  const { x, y } = useHookMouse();
 
   return (
     <div
-      style={{ minWidth: '10px', minHeight: '10px', backgroundColor: 'red' }}
-      // onClick={() => setIsShown(!isShown)}
+    // style={{ minWidth: '10px', minHeight: '10px', backgroundColor: 'red' }}
+    // onClick={() => setIsShown(!isShown)}
     >
-      {isShown && (
-        <h1>
-          X: {x}, Y: {y}
-        </h1>
-      )}
-      <Counter />
+      <Test />
     </div>
   );
 }

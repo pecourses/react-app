@@ -1,20 +1,50 @@
-import React from 'react';
-import { loadUsers } from '../../api';
-import withData from '../HOCs/withData';
+import React, { useState, useEffect } from 'react';
+import { format, differenceInMilliseconds } from 'date-fns';
 
-const TestComponent = (props) => {
-  console.log(props);
+const Timer = () => {
+  const [startTime, setStartTime] = useState(new Date());
+  const [time, setTime] = useState(new Date());
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    if (isActive) {
+      const date = new Date();
+
+      setTime(date);
+      setStartTime(date);
+
+      const intervalId = setInterval(() => {
+        setTime(new Date());
+      }, 100);
+
+      return () => clearInterval(intervalId);
+    }
+  }, [isActive]);
+
+  const diff = differenceInMilliseconds(time, startTime);
+  const formattedDate = format(diff, 'mm:ss:SSS');
 
   return (
-    <div>
-      <div>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora
-        tenetur quam doloribus delectus soluta officiis, laboriosam, beatae
-        molestiae ab voluptatum placeat, minima odit aliquid accusamus quibusdam
-        expedita asperiores commodi. Neque.
-      </div>
-    </div>
+    <article>
+      <h1>{formattedDate}</h1>
+
+      <button
+        onClick={() => {
+          setIsActive(!isActive);
+        }}>
+        {isActive ? 'Pause' : 'Start'}
+      </button>
+      <button
+        onClick={() => {
+          setIsActive(false);
+          const date = new Date();
+          setStartTime(date);
+          setTime(date);
+        }}>
+        Reset
+      </button>
+    </article>
   );
 };
 
-export default withData({getData: loadUsers})(TestComponent);
+export default Timer;

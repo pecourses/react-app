@@ -4,12 +4,15 @@ import { format, differenceInMilliseconds } from 'date-fns';
 const Timer = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [time, setTime] = useState(new Date());
+
+  const [timeHistory, setTimeHistory] = useState([]);
+
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     if (isActive) {
       const date = new Date();
-
+      setTimeHistory([]);
       setTime(date);
       setStartTime(date);
 
@@ -37,12 +40,27 @@ const Timer = () => {
       <button
         onClick={() => {
           setIsActive(false);
+
           const date = new Date();
+
           setStartTime(date);
           setTime(date);
+
+          setTimeHistory([]);
         }}>
         Reset
       </button>
+      <button
+        onClick={() => {
+          setTimeHistory([...timeHistory, formattedDate]);
+        }}>
+        Check!
+      </button>
+      <ul>
+        {timeHistory.map(time => (
+          <li key={time}>{time}</li>
+        ))}
+      </ul>
     </article>
   );
 };
